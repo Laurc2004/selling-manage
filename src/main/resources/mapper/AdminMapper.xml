@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lrc.mapper.AdminMapper">
+    <update id="save">
+        update admin set PASSWORD = #{password} where ADMIN_NAME = #{adminName}
+    </update>
+
+    <select id="selectOne" resultType="com.lrc.entity.Admin">
+        select * from admin where id = #{id}
+    </select>
+    <select id="login" resultType="com.lrc.entity.Admin">
+        select * from admin where ADMIN_NAME = #{adminName} limit 1
+    </select>
+</mapper>
