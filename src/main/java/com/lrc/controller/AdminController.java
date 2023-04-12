@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Map;
 
+//@CrossOrigin
 @RestController
 @RequestMapping("/admin")
 public class AdminController {
@@ -21,7 +22,7 @@ public class AdminController {
     /**
      * 登录接口
      * @param admin
-     * @return
+     * @return R
      */
     @PostMapping("/login")
     public Result<Map<String,Object>> login(@RequestBody Admin admin){
@@ -31,34 +32,54 @@ public class AdminController {
     /**
      * info信息
      * @param token
-     * @return
+     * @return R
      */
 
     @GetMapping("/info")
-    public Result<Map<String,Object>> info(String token){
+    public Result<Map<String,Object>> info(@RequestParam String token){
         return adminService.info(token);
     }
 
     /**
      * 登出接口 不写逻辑 前端去除 token
-     * @return
+     * @return R
      */
 
     @GetMapping ("/logout")
-    public Result<?> logout(){
-        return Result.success("退出成功");
+    public Result<?> logout(@RequestHeader("token") String token){
+        return adminService.logout(token);
     }
 
     /**
-     * 修改管理员接口
+     * 修改管理员接口 测试用
      * @param admin
-     * @return
+     * @return R
      */
 
-//    @PostMapping("/update")
-//    public Result<?> update(@RequestBody Admin admin){
-//        return adminService.update(admin);
-//    }
+    @PostMapping("/update")
+    public Result<?> update(@RequestBody Admin admin){
+        return adminService.update(admin);
+    }
+
+    /**
+     * 新增管理员接口 测试用
+     * @param admin
+     * @return R
+     */
+
+    @PostMapping("/save")
+    public Result<?> save(@RequestBody Admin admin){
+        return adminService.save(admin);
+    }
+
+    /**
+     * 查询所有管理员 测试用
+     * @return R
+     */
+    @GetMapping("/select")
+    public Result<?> select(){
+        return adminService.select();
+    }
 
     /**
      * 测试查找用户

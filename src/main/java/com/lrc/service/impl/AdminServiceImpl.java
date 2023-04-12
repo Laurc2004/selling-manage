@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -58,16 +59,39 @@ public class AdminServiceImpl implements AdminService {
         admin = JSON.parseObject(JSON.toJSONString(admin),Admin.class);
 //        创建 HashMap 取出 name
         HashMap<String,Object> map = new HashMap<>();
+        map.put("adminId",admin.getId());
         map.put("adminName",admin.getAdminName());
         return Result.success(map);
     }
 
-//    @Override
-//    public Result<?> update(Admin admin) {
-//        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
-//        adminMapper.save(admin);
-//        return Result.success(admin);
-//    }
+    @Override
+    public Result<?> logout(String token) {
+        return Result.success("退出登录成功",null);
+    }
+
+    @Override
+    public Result<?> update(Admin admin) {
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        adminMapper.update(admin);
+        return Result.success(admin);
+    }
+
+    @Override
+    public Result<?> save(Admin admin) {
+        admin.setPassword(passwordEncoder.encode(admin.getPassword()));
+        adminMapper.save(admin);
+        return Result.success(admin);
+    }
+
+    @Override
+    public Result<?> select() {
+        List<Admin> admin;
+        admin = adminMapper.select();
+        if (admin == null){
+            return Result.failure(404,"获取数据失败");
+        }
+        return Result.success(admin);
+    }
 //
 //    @Override
 //    public Admin selectOne(Integer id) {

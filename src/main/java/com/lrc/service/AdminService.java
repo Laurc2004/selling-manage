@@ -12,5 +12,11 @@ public interface AdminService {
 
     Result<Map<String,Object>> info(String token);
 
-//    Result<?> update(Admin admin);
+    Result<?> logout(String token);
+
+    Result<?> update(Admin admin);
+
+    Result<?> save(Admin admin);
+
+    Result<?> select();
 }
