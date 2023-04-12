@@ -1,0 +1,18 @@
+server:
+  port: 9091
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://localhost:3306/selling-manage
+    username: root
+    password: root@123456
+    url: jdbc:mysql://47.113.224.165:3306/selling-manage
+
+logging:
+  level:
+    com.lrc: debug
+mybatis:
+  type-aliases-package: "com.lrc.entity"
+  mapper-locations: "classpath:mapper/*Mapper.xml"
+  configuration:
+    map-underscore-to-camel-case: true
