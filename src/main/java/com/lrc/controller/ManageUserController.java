@@ -22,4 +22,19 @@ public class ManageUserController {
     public Result<?> selectAll(){
         return manageUserService.selectAll();
     }
+
+    @GetMapping("/{id}")
+    public Result<?> getUserById(@PathVariable Integer id){
+        return manageUserService.getUserById(id);
+    }
+
+    @PostMapping("/update")
+    public Result<?> update(@RequestBody User user, HttpServletRequest request){
+        return manageUserService.update(user,request);
+    }
+
+    @PostMapping("/delete/{id}")
+    public Result<?> deleteUserById (@PathVariable Integer id){
+        return manageUserService.deleteUserById(id);
+    }
 }

@@ -6,11 +6,26 @@
         insert into user (USERNAME, PASSWORD, PHONE, CREATE_TIME, UPDATE_TIME, ADMIN_ID,DELETED) VALUES
                (#{username},#{password},#{phone},#{createTime},#{updateTime},#{adminId},#{deleted})
     </insert>
+    <update id="update">
+        update user set USERNAME = #{username},PASSWORD = #{password},PHONE = #{phone}
+        ,UPDATE_TIME = #{updateTime},ADMIN_ID = #{adminId}
+        where ID = #{id}
+    </update>
+    <update id="deleteUserById">
+        update user set DELETED = 1
+        where ID = #{id}
+    </update>
     <select id="selectAll" resultMap="userWithAdminResultMap">
         SELECT user.*, admin.ADMIN_NAME
         FROM user
         LEFT JOIN admin ON user.admin_id = admin.id
         WHERE DELETED = 0
+    </select>
+    <select id="getUserById" resultType="com.lrc.entity.User">
+        SELECT user.*, admin.ADMIN_NAME
+        FROM user
+                 LEFT JOIN admin ON user.admin_id = admin.id
+        WHERE DELETED = 0 AND user.ID = #{id}
     </select>
 
 

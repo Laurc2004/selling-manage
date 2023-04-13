@@ -10,4 +10,10 @@ public interface ManageUserMapper {
     Integer save(User user);
 
     List<User> selectAll();
+
+    User getUserById(Integer id);
+
+    Integer update(User user);
+
+    Integer deleteUserById(Integer id);
 }

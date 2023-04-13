@@ -9,4 +9,10 @@ public interface ManageUserService {
     Result<?> save(User user, HttpServletRequest request);
 
     Result<?> selectAll();
+
+    Result<?> getUserById(Integer id);
+
+    Result<?> update(User user,HttpServletRequest request);
+
+    Result<?> deleteUserById(Integer id);
 }
